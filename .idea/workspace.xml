@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="34907a56-150b-4b3e-a056-02f03c7b6a6a" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1rRRrY9OPQUKsQLrzeZ2VJWf0Cr" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="web.server" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.base.html">
+    <configuration name="start" type="ChromiumRemoteDebugType" factoryName="Chromium Remote" port="9229">
+      <method v="2" />
+    </configuration>
+    <configuration name="base.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/carunch/base.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://carunch.localhost/index.html">
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Attach to Node.js/Chrome.start" />
+      <item itemvalue="JavaScript Debug.index.html" />
+      <item itemvalue="JavaScript Debug.base.html" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.base.html" />
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="34907a56-150b-4b3e-a056-02f03c7b6a6a" name="Default Changelist" comment="" />
+      <created>1618937114933</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1618937114933</updated>
+      <workItem from="1618937115998" duration="2083000" />
+      <workItem from="1618953706291" duration="4390000" />
+      <workItem from="1618958730326" duration="1045000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="881" y="389" width="215" height="326" key="#File_Watchers" timestamp="1618937249117">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="881" y="389" width="215" height="326" key="#File_Watchers/67.27.1853.1053@67.27.1853.1053" timestamp="1618937249117" />
+    <state x="67" y="310" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1618937747568">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="67" y="310" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1618937747568" />
+    <state x="629" y="330" width="719" height="445" key="EditFileWatcherDialog" timestamp="1618937244191">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="629" y="330" width="719" height="445" key="EditFileWatcherDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1618937244191" />
+    <state x="359" y="395" width="424" height="484" key="FileChooserDialogImpl" timestamp="1618937666710">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="359" y="395" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1618937666710" />
+    <state width="904" height="344" key="GridCell.Tab.0.bottom" timestamp="1618944198484">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="904" height="344" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1618944198484" />
+    <state width="904" height="344" key="GridCell.Tab.0.center" timestamp="1618944198484">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="904" height="344" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1618944198484" />
+    <state width="904" height="344" key="GridCell.Tab.0.left" timestamp="1618944198483">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="904" height="344" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1618944198483" />
+    <state width="904" height="344" key="GridCell.Tab.0.right" timestamp="1618944198484">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="904" height="344" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1618944198484" />
+    <state width="904" height="344" key="GridCell.Tab.1.bottom" timestamp="1618944198485">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="904" height="344" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1618944198485" />
+    <state width="904" height="344" key="GridCell.Tab.1.center" timestamp="1618944198484">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="904" height="344" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1618944198484" />
+    <state width="904" height="344" key="GridCell.Tab.1.left" timestamp="1618944198484">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="904" height="344" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1618944198484" />
+    <state width="904" height="344" key="GridCell.Tab.1.right" timestamp="1618944198485">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="904" height="344" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1618944198485" />
+    <state width="904" height="344" key="GridCell.Tab.2.bottom" timestamp="1618944198486">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="904" height="344" key="GridCell.Tab.2.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1618944198486" />
+    <state width="904" height="344" key="GridCell.Tab.2.center" timestamp="1618944198485">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="904" height="344" key="GridCell.Tab.2.center/67.27.1853.1053@67.27.1853.1053" timestamp="1618944198485" />
+    <state width="904" height="344" key="GridCell.Tab.2.left" timestamp="1618944198485">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="904" height="344" key="GridCell.Tab.2.left/67.27.1853.1053@67.27.1853.1053" timestamp="1618944198485" />
+    <state width="904" height="344" key="GridCell.Tab.2.right" timestamp="1618944198485">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="904" height="344" key="GridCell.Tab.2.right/67.27.1853.1053@67.27.1853.1053" timestamp="1618944198485" />
+    <state width="904" height="344" key="GridCell.Tab.3.bottom" timestamp="1618944198487">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="904" height="344" key="GridCell.Tab.3.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1618944198487" />
+    <state width="904" height="344" key="GridCell.Tab.3.center" timestamp="1618944198486">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="904" height="344" key="GridCell.Tab.3.center/67.27.1853.1053@67.27.1853.1053" timestamp="1618944198486" />
+    <state width="904" height="344" key="GridCell.Tab.3.left" timestamp="1618944198486">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="904" height="344" key="GridCell.Tab.3.left/67.27.1853.1053@67.27.1853.1053" timestamp="1618944198486" />
+    <state width="904" height="344" key="GridCell.Tab.3.right" timestamp="1618944198486">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="904" height="344" key="GridCell.Tab.3.right/67.27.1853.1053@67.27.1853.1053" timestamp="1618944198486" />
+    <state x="67" y="187" key="SettingsEditor" timestamp="1618937789771">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="67" y="187" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1618937789771" />
+    <state x="221" y="161" width="618" height="783" key="find.popup" timestamp="1618955034649">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="221" y="161" width="618" height="783" key="find.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1618955034649" />
+    <state x="193" y="257" key="search.everywhere.popup" timestamp="1618937523117">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="193" y="257" key="search.everywhere.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1618937523117" />
+  </component>
+</project>
