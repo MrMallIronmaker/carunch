@@ -1,7 +1,4 @@
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+
 
 .abs {
   position: absolute;
@@ -9,10 +6,7 @@
 
 a {
   color: white;
-  text-decoration: none;
-  &:hover {
-    color: lightblue;
-  }
+  text-decoration: none
 }
 
 body {

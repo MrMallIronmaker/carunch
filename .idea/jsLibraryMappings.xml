@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{@mediapipe/camera_utils, @mediapipe/control_utils, @mediapipe/drawing_utils, @mediapipe/face_mesh, @mediapipe/holistic}" />
-  </component>
-</project>

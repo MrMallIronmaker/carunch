@@ -6,12 +6,15 @@
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh@0.1/face_mesh.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.1/camera_utils.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils@0.1/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 
 <body>
 <div class="container">
-    <video class="input_video"></video>
-    <canvas class="output_canvas" width="1280px" height="720px"></canvas>
+    <video class="input_video" hidden></video>
+    <div id="rendererTarget">
+
+    </div>
     <div class="loading">
         <div class="spinner"></div>
         <div class="message">
@@ -38,6 +41,7 @@
 </div>
 <div class="control-panel">
 </div>
+<!--script src="base.js"></script-->
 <script src="base.js"></script>
 </body>
 </html>
