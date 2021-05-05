@@ -1,7 +1,7 @@
 // Our input frames will come from here.
 const videoElement = document.getElementsByClassName('input_video')[0];
 
-let scene, camera, renderer;
+let scene, camera, renderer, plate, edible, edibles;
 
 // Create an empty scene
 
@@ -21,10 +21,51 @@ function screenSpaceToWorldSpace(px, py, distance) {
     )
 }
 
-const cube = new THREE.Mesh(
-    new THREE.BoxGeometry( 0.02, 0.02, 0.02),
-    new THREE.MeshStandardMaterial( { color: "#433F81", roughness: 0.4} )
-);
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
+function buildSpriteFromImgURL(url) {
+    return new THREE.Sprite(new THREE.SpriteMaterial({
+        map: new THREE.TextureLoader().load(url)
+    }));
+}
+
+// this one returns an array of makhanas
+function buildMakhanas() {
+    const makhana1 = buildSpriteFromImgURL("makhana/makhana1.png");
+    makhana1.scale.copy(new THREE.Vector3(.05, .05, 1));
+    makhana1.position.copy(new THREE.Vector3(-0.06, -0.039, -0.14));
+
+    const makhana2 = buildSpriteFromImgURL("makhana/makhana2.png");
+    makhana2.scale.copy(new THREE.Vector3(.05, .05, 1));
+    makhana2.position.copy(new THREE.Vector3(-0.05, -0.038, -0.141));
+
+    const makhana3 = buildSpriteFromImgURL("makhana/makhana3.png");
+    makhana3.scale.copy(new THREE.Vector3(.05, .05, 1));
+    makhana3.position.copy(new THREE.Vector3(-0.04, -0.040, -0.139));
+
+    const makhana4 = buildSpriteFromImgURL("makhana/makhana4.png");
+    makhana4.scale.copy(new THREE.Vector3(.05, .05, 1));
+    makhana4.position.copy(new THREE.Vector3(-0.07, -0.041, -0.142));
+    return [makhana1, makhana2, makhana3, makhana4];
+}
+
+function buildPlate(scene) {
+    // make actual plate
+    plate = buildSpriteFromImgURL("plate.png");
+    plate.scale.copy(new THREE.Vector3(1.9/15, .792/15, 1));
+    plate.position.copy(new THREE.Vector3(-0.12, -0.08, -0.3));
+    scene.add(plate);
+
+    edibles = buildMakhanas();
+    edibles.forEach((ed) => {scene.add(ed);});
+
+    // TODO: upon eating, clone new one to edible.
+
+    edible = edibles[getRandomInt(edibles.length)].clone();
+    scene.add(edible);
+}
 
 function buildLights(scene) {
     var light = new THREE.SpotLight("#fff", 0.8);
@@ -58,17 +99,6 @@ function buildVideoTexture(scene) {
 
 }
 
-function buildChipBag(scene) {
-    const geometry = new THREE.CylinderGeometry( 0.025, 0.025, 0.05, 16);
-    const material = new THREE.MeshStandardMaterial( {color: 0xffff00, roughness: 0.2} );
-    const cylinder = new THREE.Mesh( geometry, material );
-    cylinder.position.copy(cylinderPos);
-    cylinder.rotation.x = Math.PI / 3;
-    cylinder.rotation.y = Math.PI / 8;
-    cylinder.rotation.z = -Math.PI / 2;
-    scene.add( cylinder );
-}
-
 
 function initRenderer() {
 
@@ -79,17 +109,13 @@ function initRenderer() {
     renderer.setSize( videoElement.videoWidth, videoElement.videoHeight );
     document.getElementById("rendererTarget").append(renderer.domElement);
 
-    buildChipBag(scene);
+    // buildChipBag(scene);
     buildVideoTexture(scene);
     buildLights(scene);
-
-    cube.position.z = -0.3;
-    scene.add(cube);
+    buildPlate(scene);
 
     const render = function () {
         requestAnimationFrame( render );
-        cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01;
         renderer.render(scene, camera);
     };
 
@@ -128,18 +154,18 @@ function onResults(results) {
                 let target = screenSpaceToWorldSpace(
                     (landmarks[13].x + landmarks[14].x)/2,
                     (landmarks[13].y + landmarks[14].y)/2,
-                    0.3
+                    0.2
                 );
                 const alpha = 0.3;
                 //console.log(target, cube.position);
-                cube.position.addVectors(cube.position.multiplyScalar(1 - alpha), target.multiplyScalar(alpha));
+                edible.position.addVectors(edible.position.multiplyScalar(1 - alpha), target.multiplyScalar(alpha));
 
             } else {
                 //canvasCtx.fillStyle = "#ff3030";
                 if (isSoundPlayable && wasPreviousMouthOpen) {
                     isSoundPlayable = false;
                     new Audio("crunch_sound.ogg").play();
-                    cube.position.copy(cylinderPos);
+                    edible.copy(edibles[getRandomInt(edibles.length)].clone());
                     setTimeout(
                         function() {isSoundPlayable = true;},
                         300
