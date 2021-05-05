@@ -1,7 +1,7 @@
 // Our input frames will come from here.
 const videoElement = document.getElementsByClassName('input_video')[0];
 
-let scene, camera, renderer, plate, edible, edibles;
+let scene, camera, renderer, plate, edible, edibles, crunches;
 
 // Create an empty scene
 
@@ -122,15 +122,15 @@ function initRenderer() {
     render();
 }
 
+crunches = [
+    new Audio("makhana/makhana1.ogg"),
+    new Audio("makhana/makhana2.ogg"),
+    new Audio("makhana/makhana3.ogg")
+]
+
 videoElement.addEventListener('loadedmetadata', (event) => {
     initRenderer();
 })
-
-// Optimization: Turn off animated spinner after its hiding animation is done.
-const spinner = document.querySelector('.loading');
-spinner.ontransitionend = () => {
-    spinner.style.display = 'none';
-};
 
 let isSoundPlayable = true;
 let wasPreviousMouthOpen = false;
@@ -164,7 +164,7 @@ function onResults(results) {
                 //canvasCtx.fillStyle = "#ff3030";
                 if (isSoundPlayable && wasPreviousMouthOpen) {
                     isSoundPlayable = false;
-                    new Audio("crunch_sound.ogg").play();
+                    crunches[getRandomInt(crunches.length)].play();
                     edible.copy(edibles[getRandomInt(edibles.length)].clone());
                     setTimeout(
                         function() {isSoundPlayable = true;},
