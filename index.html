@@ -12,15 +12,19 @@
 
 <body>
 <div class="container">
+    <button id="record">Start Recording</button>
+    <button id="download">download</button>
+
     <video class="input_video" hidden></video>
     <div id="rendererTarget" style="position:relative">
-        <div style="position:absolute;left:50%;top:50%;text-align:center;transform:translate(-50%, -50%);color:whitesmoke;background-color:rgba(0, 0, 0, 0.5);padding:20px">
-            <h1>FOOBAR</h1>
-            <button>Next</button>
+        <div id="instructions_box" style="position:absolute;left:50%;top:50%;text-align:center;transform:translate(-50%, -50%);color:whitesmoke;background-color:rgba(0, 0, 0, 0.5);padding:20px;max-width:30%">
+            <p id="instructions_text">Thank you for participating in this study.</p>
+            <button id="next_button">Next</button>
         </div>
     </div>
 </div>
 <!--script src="base.js"></script-->
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
 <script src="base.js"></script>
 </body>
 </html>
