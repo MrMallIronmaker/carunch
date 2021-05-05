@@ -1,3 +1,36 @@
+// Firebase initializtion
+const firebaseConfig = {
+    apiKey: "AIzaSyAsO3mp8p4V23gDIBcAS913k3bh-qreU7Q",
+    authDomain: "carunch-fs.firebaseapp.com",
+    projectId: "carunch-fs",
+    storageBucket: "carunch-fs.appspot.com",
+    messagingSenderId: "110033830309",
+    appId: "1:110033830309:web:da0d8373616a000bbf284c"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Create a root reference
+const storageRef = firebase.storage().ref();
+
+function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
+const qualtrics_id = "merriwether";
+const session_ref = uuidv4();
+let entry = -1;
+
+function make_ref() {
+    entry += 1;
+    return 'uploaded/' + qualtrics_id + '--' + session_ref + '--' + entry + '.webm'
+}
+
+let guidref = storageRef.child(make_ref());
+
 // Our input frames will come from here.
 const videoElement = document.getElementsByClassName('input_video')[0];
 
@@ -56,6 +89,7 @@ function forwardButton() {
         default:
             instructions_box.hidden = true;
             buildPlate(scene);
+            startRecording();
 
     }
 }
@@ -212,11 +246,6 @@ mediapipeCamera.start();
 const mediaSource = new MediaSource();
 mediaSource.addEventListener('sourceopen', handleSourceOpen, false);
 
-const recordButton = document.querySelector('button#record');
-const downloadButton = document.querySelector('button#download');
-recordButton.onclick = toggleRecording;
-downloadButton.onclick = download;
-
 function handleSourceOpen(event) {
     console.log('MediaSource opened');
     sourceBuffer = mediaSource.addSourceBuffer('video/webm; codecs="vp8"');
@@ -233,16 +262,6 @@ function handleStop(event) {
     console.log('Recorder stopped: ', event);
     const superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
     // video.src = window.URL.createObjectURL(superBuffer);
-}
-
-function toggleRecording() {
-    if (recordButton.textContent === 'Start Recording') {
-        startRecording();
-    } else {
-        stopRecording();
-        recordButton.textContent = 'Start Recording';
-        downloadButton.disabled = false;
-    }
 }
 
 // The nested try blocks will be simplified when Chrome 47 moves to Stable
@@ -271,31 +290,53 @@ function startRecording() {
         }
     }
     console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
-    recordButton.textContent = 'Stop Recording';
-    downloadButton.disabled = true;
     mediaRecorder.onstop = handleStop;
     mediaRecorder.ondataavailable = handleDataAvailable;
     mediaRecorder.start(100); // collect 100ms of data
     console.log('MediaRecorder started', mediaRecorder);
+    setTimeout(
+        function() {stopRecording();},
+        10000 // 10s
+    )
 }
 
 function stopRecording() {
     mediaRecorder.stop();
     console.log('Recorded Blobs: ', recordedBlobs);
+    upload();
     // video.controls = true;
+    startRecording();
 }
 
-function download() {
-    const blob = new Blob(recordedBlobs, {type: 'video/webm'});
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.style.display = 'none';
-    a.href = url;
-    a.download = 'test.webm';
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(() => {
-        document.body.removeChild(a);
-        window.URL.revokeObjectURL(url);
-    }, 100);
+function upload() {
+    const file = new Blob(recordedBlobs, {type: 'video/webm'});
+    const uploadTask = guidref.put(file)
+
+    // Register three observers:
+    // 1. 'state_changed' observer, called any time the state changes
+    // 2. Error observer, called on failure
+    // 3. Completion observer, called on successful completion
+    uploadTask.on('state_changed',
+        (snapshot) => {
+            // Observe state change events such as progress, pause, and resume
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                    console.log('Upload is running');
+                    break;
+            }
+        },
+        (error) => {
+            console.log(error);
+        },
+        () => {
+            console.log("completed!")
+        }
+    );
+    guidref = storageRef.child(make_ref());
 }
