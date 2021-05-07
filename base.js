@@ -20,7 +20,9 @@ function uuidv4() {
     });
 }
 
-const qualtrics_id = "merriwether";
+const urlParams = new URLSearchParams(window.location.search);
+
+const qualtrics_id = urlParams.get("qid");
 const session_ref = uuidv4();
 let entry = -1;
 
@@ -123,9 +125,29 @@ function buildMakhana(id) {
     return makhana;
 }
 
+function buildKale(id) {
+    const makhana = buildSpriteFromImgURLWithRotation(
+        "kale/kale" + (id % 5 + 1) + ".png",
+        id*id*1.6
+    );
+    makhana.scale.copy(new THREE.Vector3(.02, .02, 1));
+    makhana.position.copy(randomOffset(
+        new THREE.Vector3(-0.025 + .01 * (id % 6), -0.04 - .005 * Math.floor(id / 6), -0.14 + .005 * Math.floor(id / 6)),
+        id + 3, 0.002
+    ));
+    return makhana;
+}
+
 // this one returns an array of makhanas
 function buildMakhanas() {
-    return Array(12).fill(1).map((x, y) => x + y).map(buildMakhana);
+    if (urlParams.get("content") === "makhana") {
+        return Array(12).fill(1).map((x, y) => x + y).map(buildMakhana);
+    } else if (urlParams.get("content") === "kale") {
+        return Array(12).fill(1).map((x, y) => x + y).map(buildKale);
+    } else {
+        console.log("Content unspecified");
+    }
+
 }
 
 function buildPlate(scene) {
