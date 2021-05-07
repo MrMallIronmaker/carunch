@@ -101,19 +101,19 @@ next_button.onclick = forwardButton;
 function buildMakhanas() {
     const makhana1 = buildSpriteFromImgURL("makhana/makhana1.png");
     makhana1.scale.copy(new THREE.Vector3(.05, .05, 1));
-    makhana1.position.copy(new THREE.Vector3(-0.06, -0.039, -0.14));
+    makhana1.position.copy(new THREE.Vector3(0, -0.039, -0.14));
 
     const makhana2 = buildSpriteFromImgURL("makhana/makhana2.png");
     makhana2.scale.copy(new THREE.Vector3(.05, .05, 1));
-    makhana2.position.copy(new THREE.Vector3(-0.05, -0.038, -0.141));
+    makhana2.position.copy(new THREE.Vector3(0.01, -0.038, -0.141));
 
     const makhana3 = buildSpriteFromImgURL("makhana/makhana3.png");
     makhana3.scale.copy(new THREE.Vector3(.05, .05, 1));
-    makhana3.position.copy(new THREE.Vector3(-0.04, -0.040, -0.139));
+    makhana3.position.copy(new THREE.Vector3(-0.02, -0.040, -0.139));
 
     const makhana4 = buildSpriteFromImgURL("makhana/makhana4.png");
     makhana4.scale.copy(new THREE.Vector3(.05, .05, 1));
-    makhana4.position.copy(new THREE.Vector3(-0.07, -0.041, -0.142));
+    makhana4.position.copy(new THREE.Vector3(-0.01, -0.041, -0.142));
     return [makhana1, makhana2, makhana3, makhana4];
 }
 
@@ -121,7 +121,7 @@ function buildPlate(scene) {
     // make actual plate
     plate = buildSpriteFromImgURL("plate.png");
     plate.scale.copy(new THREE.Vector3(1.9/15, .792/15, 1));
-    plate.position.copy(new THREE.Vector3(-0.12, -0.08, -0.3));
+    plate.position.copy(new THREE.Vector3(-0, -0.10, -0.3));
     scene.add(plate);
 
     edibles = buildMakhanas();
@@ -132,6 +132,18 @@ function buildPlate(scene) {
     edible = edibles[getRandomInt(edibles.length)].clone();
     scene.add(edible);
     isFoodAvailable = true;
+}
+
+function buildTable(scene) {
+
+    const table = new THREE.Mesh(
+        new THREE.PlaneGeometry(4.5, 1.8, 2),
+        new THREE.MeshBasicMaterial( {map: new THREE.TextureLoader().load('table.jpg'), side : THREE.DoubleSide} )
+    );
+
+    table.rotation.x = Math.PI / 2;
+    table.position.copy(new THREE.Vector3(0, -1, -3));
+    scene.add(table);
 }
 
 function buildVideoTexture(scene) {
@@ -159,6 +171,7 @@ function initRenderer() {
     document.getElementById("rendererTarget").append(renderer.domElement);
 
     buildVideoTexture(scene);
+    buildTable(scene);
 
     const render = function () {
         requestAnimationFrame( render );
