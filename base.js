@@ -85,19 +85,20 @@ function forwardButton() {
             instructions_text.textContent = "First, ensure your sound is on.";
             break;
         case 2:
-            instructions_text.textContent = "Next, open and close your mouth." +
-                "If you have trouble, make sure your face is well-lit and within view of the camera. " +
+            instructions_text.textContent = "Next, open and close your mouth. " +
+                "If the program does not respond, make sure your face is well-lit and within view of the camera. " +
                 "If you still have trouble, alert the course staff.";
             next_button.disabled = true;
+            next_button.textContent = "Begin";
             break;
         case 3:
-            instructions_text.textContent = "Finally, be aware that the video will be recorded " +
-                "as you interact with the virtual content.";
-            break;
-        default:
             instructions_box.hidden = true;
             buildPlate(scene);
             startRecording();
+            next_button.hidden = true;
+            break;
+        default:
+            console.log("Error counting...");
 
     }
 }
@@ -139,8 +140,9 @@ function buildPlate(scene) {
 
     // TODO: upon eating, clone new one to edible.
 
-    edible = edibles[getRandomInt(edibles.length)].clone();
-    scene.add(edible);
+    edible = edibles[getRandomInt(edibles.length)];
+    edibles = edibles.filter((ed) => !(ed === edible));
+
     isFoodAvailable = true;
 }
 
@@ -241,7 +243,18 @@ function onResults(results) {
                     isSoundPlayable = false;
                     if (isFoodAvailable) {
                         crunches[getRandomInt(crunches.length)].play();
-                        edible.copy(edibles[getRandomInt(edibles.length)].clone());
+
+                        scene.remove(edible);
+                        if (edibles.length > 0) {
+                            edible = edibles[getRandomInt(edibles.length)];
+                            edibles = edibles.filter((ed) => !(ed === edible));
+                        }
+                        else {
+                            setTimeout(stopRecording, 1000); // get an extra one second of data.
+                            // tell people we're done.
+                            instructions_box.hidden = false;
+                            instructions_text.textContent = "Thank you! Please wait while your data is being processed."
+                        }
                     }
                     setTimeout(
                         function() {isSoundPlayable = true;},
@@ -320,18 +333,12 @@ function startRecording() {
     mediaRecorder.ondataavailable = handleDataAvailable;
     mediaRecorder.start(100); // collect 100ms of data
     console.log('MediaRecorder started', mediaRecorder);
-    setTimeout(
-        function() {stopRecording();},
-        10000 // 10s
-    )
 }
 
 function stopRecording() {
     mediaRecorder.stop();
     console.log('Recorded Blobs: ', recordedBlobs);
     upload();
-    // video.controls = true;
-    startRecording();
 }
 
 function upload() {
@@ -361,7 +368,8 @@ function upload() {
             console.log(error);
         },
         () => {
-            console.log("completed!")
+            instructions_text.textContent = "Thank you for completing this part of the survey.\nClose " +
+                "this tab and return to the original survey tab."
         }
     );
     guidref = storageRef.child(make_ref());
