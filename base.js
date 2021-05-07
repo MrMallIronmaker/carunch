@@ -66,6 +66,14 @@ function buildSpriteFromImgURL(url) {
     }));
 }
 
+function buildSpriteFromImgURLWithRotation(url, rotation) {
+    const material = new THREE.SpriteMaterial({
+        map: new THREE.TextureLoader().load(url),
+        rotation: rotation
+    });
+    return new THREE.Sprite(material);
+}
+
 const next_button = document.getElementById("next_button");
 const instructions_text = document.getElementById("instructions_text");
 const instructions_box = document.getElementById("instructions_box");
@@ -97,30 +105,32 @@ function forwardButton() {
 next_button.step = 0;
 next_button.onclick = forwardButton;
 
+function randomOffset(v, i, mag) {
+    return new THREE.Vector3(Math.sin(i*i) * mag, Math.cos(i*i) * mag, mag * 0.1 * Math.sin(i*i*i)).add(v);
+}
+
+function buildMakhana(id) {
+    const makhana = buildSpriteFromImgURLWithRotation(
+        "makhana/makhana" + (id % 4 + 1) + ".png",
+        id*id*1.6
+    );
+    makhana.scale.copy(new THREE.Vector3(.05, .05, 1));
+    makhana.position.copy(randomOffset(
+        new THREE.Vector3(-0.025 + .01 * (id % 6), -0.04 - .005 * Math.floor(id / 6), -0.14 + .005 * Math.floor(id / 6)),
+        id + 3, 0.002
+    ));
+    return makhana;
+}
+
 // this one returns an array of makhanas
 function buildMakhanas() {
-    const makhana1 = buildSpriteFromImgURL("makhana/makhana1.png");
-    makhana1.scale.copy(new THREE.Vector3(.05, .05, 1));
-    makhana1.position.copy(new THREE.Vector3(0, -0.039, -0.14));
-
-    const makhana2 = buildSpriteFromImgURL("makhana/makhana2.png");
-    makhana2.scale.copy(new THREE.Vector3(.05, .05, 1));
-    makhana2.position.copy(new THREE.Vector3(0.01, -0.038, -0.141));
-
-    const makhana3 = buildSpriteFromImgURL("makhana/makhana3.png");
-    makhana3.scale.copy(new THREE.Vector3(.05, .05, 1));
-    makhana3.position.copy(new THREE.Vector3(-0.02, -0.040, -0.139));
-
-    const makhana4 = buildSpriteFromImgURL("makhana/makhana4.png");
-    makhana4.scale.copy(new THREE.Vector3(.05, .05, 1));
-    makhana4.position.copy(new THREE.Vector3(-0.01, -0.041, -0.142));
-    return [makhana1, makhana2, makhana3, makhana4];
+    return Array(12).fill(1).map((x, y) => x + y).map(buildMakhana);
 }
 
 function buildPlate(scene) {
     // make actual plate
     plate = buildSpriteFromImgURL("plate.png");
-    plate.scale.copy(new THREE.Vector3(1.9/15, .792/15, 1));
+    plate.scale.copy(new THREE.Vector3(1.9/10, .792/10, 1));
     plate.position.copy(new THREE.Vector3(-0, -0.10, -0.3));
     scene.add(plate);
 
