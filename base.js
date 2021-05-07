@@ -169,9 +169,12 @@ function initRenderer() {
 }
 
 crunches = [
-    new Audio("makhana/makhana1.ogg"),
-    new Audio("makhana/makhana2.ogg"),
-    new Audio("makhana/makhana3.ogg")
+    new Audio("makhana/makhana_longer_-01.ogg"),
+    new Audio("makhana/makhana_longer_-02.ogg"),
+    new Audio("makhana/makhana_longer_-03.ogg"),
+    new Audio("makhana/makhana_longer_-04.ogg"),
+    new Audio("makhana/makhana_longer_-05.ogg"),
+    new Audio("makhana/makhana_longer_-06.ogg")
 ]
 
 videoElement.addEventListener('loadedmetadata', (event) => {
